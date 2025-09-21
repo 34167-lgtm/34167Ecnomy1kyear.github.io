@@ -1,0 +1,388 @@
+body {
+    margin: 0;              /* ลบ margin เริ่มต้นของ browser */
+    padding: 0;             /* ลบ padding เริ่มต้นของ browser */
+    font-family: Arial, sans-serif;  /* กำหนดฟอนต์หลักของเว็บไซต์ */
+    background-color: #2c2c2c;      /* สีพื้นหลังเว็บไซต์เป็นสีเทาเข้ม */
+}
+
+.navbar {
+    overflow: hidden;        /* ซ่อนเนื้อหาที่เกินขอบ */
+    background-color: #333;  /* สีพื้นหลังของ navbar เป็นสีเทาเข้ม */
+    position: fixed;         /* ติดแน่นกับหน้าจอ ไม่เลื่อนตาม scroll */
+    top: 0;                 /* ติดด้านบนสุดของหน้าจอ */
+    width: 100%;            /* ความกว้างเต็มหน้าจอ */
+    z-index: 1000;          /* ลำดับการแสดงผลสูงสุด อยู่เหนือองค์ประกอบอื่น */
+    display: flex;          /* ใช้ flexbox layout */
+}
+
+.navbar a {
+    float: left;            /* จัดเรียงลิงก์ทางซ้าย */
+    display: flex;          /* ใช้ flex layout สำหรับลิงก์แต่ละตัว */
+    align-items: center;    /* จัดแนวตั้งให้อยู่กึ่งกลาง */
+    gap: 8px;              /* ระยะห่างระหว่างไอคอนกับข้อความ */
+    color: #f2f2f2;        /* สีข้อความเป็นสีขาวอ่อน */
+    text-align: center;     /* จัดข้อความให้อยู่กึ่งกลาง */
+    padding: 14px 20px;     /* ระยะห่างภายในลิงก์ (บน-ล่าง 14px, ซ้าย-ขวา 20px) */
+    text-decoration: none;  /* ลบเส้นใต้ของลิงก์ */
+    font-size: 17px;       /* ขนาดฟอนต์ */
+}
+
+.navbar img {
+    width: 20px;           /* ความกว้างของไอคอน */
+    height: 20px;          /* ความสูงของไอคอน */
+    filter: brightness(0) invert(1);  /* เปลี่ยนไอคอนเป็นสีขาว */
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* สีพื้นหลังเมื่อ hover เป็นสีเทาอ่อน */
+    color: black;          /* สีข้อความเมื่อ hover เป็นสีดำ */
+}
+
+.navbar a:hover img {
+    filter: brightness(0); /* เปลี่ยนไอคอนเป็นสีดำเมื่อ hover */
+}
+
+.navbar a.active {
+    background-color: #ff6b35; /* สีพื้นหลังของลิงก์ที่ active เป็นสีส้ม */
+    color: white;              /* สีข้อความของลิงก์ที่ active เป็นสีขาว */
+}
+
+.navbar a.active img {
+    filter: brightness(0) invert(1); /* ไอคอนของลิงก์ที่ active เป็นสีขาว */
+}
+
+.main-content {
+    margin-top: 30px; /* เว้นพื้นที่ด้านบนสำหรับ navbar ที่มี position fixed */
+}
+
+.hero-section {
+    background-color: #1a1a1a; /* สีพื้นหลังเป็นสีดำอ่อน */
+    padding: 20px 0;           /* ระยะห่างด้านบนล่าง 20px */
+    text-align: center;        /* จัดเนื้อหาให้อยู่กึ่งกลาง */
+}
+
+.hero-section img {
+    width: 100%;          /* ความกว้างเต็มของ container */
+    max-width: 1200px;    /* ความกว้างสูงสุด 1200px */
+    height: auto;         /* ความสูงปรับตามสัดส่วน */
+}
+
+.timeline-section {
+    background-color: #f5f5f5; /* สีพื้นหลังเป็นสีเทาอ่อนมาก */
+    padding-top: 20px;         /* ระยะห่างด้านบน */
+    padding-bottom: 40px;      /* ระยะห่างด้านล่าง */
+}
+
+.timeline-title {
+    color: #2c2c2c;       /* สีข้อความเป็นสีเทาเข้ม */
+    font-size: 32px;      /* ขนาดฟอนต์ใหญ่ */
+    font-weight: bold;    /* น้ำหนักฟอนต์หนา */
+    text-align: center;   /* จัดข้อความให้อยู่กึ่งกลาง */
+    margin: 0 0 30px 0;   /* ระยะห่างด้านล่าง 30px */
+    padding: 0 40px;      /* ระยะห่างซ้าย-ขวา 40px */
+}
+
+.timeline-container {
+    max-width: calc(100% - 80px); /* ความกว้างสูงสุด หักระยะห่าง 40px ซ้าย-ขวา */
+    margin: 0 auto;               /* จัดให้อยู่กึ่งกลาง */
+    padding: 0 40px;              /* ระยะห่างภายใน 40px ซ้าย-ขวา */
+}
+
+.timeline-item {
+    margin-bottom: 0; /* ไม่มีระยะห่างด้านล่างระหว่าง timeline items */
+}
+
+/* การ์ดรูปภาพ (การ์ดส่วนแรกของแต่ละ timeline item) */
+.timeline-card-image {
+    background: #ffffff;        /* สีพื้นหลังสีขาว */
+    border: 2px solid #ff6b35;  /* เส้นขอบสีส้ม หนา 2px */
+    border-radius: 15px 15px 0 0; /* มุมโค้งเฉพาะด้านบน */
+    padding: 15px;              /* ระยะห่างภายใน */
+    margin: 0;                  /* ไม่มี margin */
+}
+
+.timeline-card-image img {
+    width: 50%;         /* ความกว้างเต็ม container */
+    height: 50%;        /* ความสูงปรับตามสัดส่วน */
+    border-radius: 10px; /* มุมโค้งของรูปภาพ */
+    display: block;      /* แสดงเป็น block element */
+    margin: auto;     /* จัดรูปภาพให้อยู่กึ่งกลาง */
+}
+
+/* การ์ดเนื้อหา (การ์ดส่วนที่สองของแต่ละ timeline item) */
+.timeline-card-content {
+    background: #ffffff;        /* สีพื้นหลังสีขาว */
+    border: 2px solid #ff6b35;  /* เส้นขอบสีส้ม หนา 2px */
+    border-top: none;           /* ไม่แสดงเส้นขอบด้านบน เพื่อให้ต่อกับการ์ดรูปภาพ */
+    border-radius: 0 0 15px 15px; /* มุมโค้งเฉพาะด้านล่าง */
+    padding: 20px;              /* ระยะห่างภายใน */
+    margin: 0;                  /* ไม่มี margin */
+}
+
+.timeline-card-content h3 {
+    color: #ff6b35;      /* สีหัวข้อเป็นสีส้ม */
+    font-size: 30px;     /* ขนาดฟอนต์ของหัวข้อ */
+    font-weight: bold;   /* น้ำหนักฟอนต์หนา */
+    margin: 0 0 20px 0;  /* ระยะห่างด้านล่าง 20px */
+    text-align: center;  /* จัดหัวข้อให้อยู่กึ่งกลาง */
+}
+
+.timeline-card-content p {
+    color: #2c2c2c;      /* สีข้อความเป็นสีเทาเข้ม */
+    font-size: 16px;     /* ขนาดฟอนต์ของย่อหน้า */
+    line-height: 1.6;    /* ระยะห่างระหว่างบรรทัด */
+    margin: 15px 0;      /* ระยะห่างบน-ล่าง 15px */
+    text-align: justify; /* จัดข้อความแบบ justify */
+}
+
+.timeline-card-content h4{
+    color: #ff6b35;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.timeline-card-content span {
+    color: #888888 !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    flex-shrink: 0;
+
+}
+
+.timeline-card-content a {
+
+    color: #769e26;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: auto;
+    flex-shrink: 0;
+}
+
+.content-with-images {
+    position: relative; /* กำหนด position เป็น relative สำหรับการจัดการ float */
+}
+
+.inline-image {
+    float: left;        /* จัดรูปภาพลอยทางซ้าย */
+    margin: 0 20px 15px 0; /* ระยะห่าง: ขวา 20px, ล่าง 15px */
+    border-radius: 8px; /* มุมโค้งของกรอบรูป */
+    overflow: hidden;   /* ซ่อนส่วนที่เกินขอบ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เงาใต้รูปภาพ */
+}
+
+.inline-image.right {
+    float: right;       /* จัดรูปภาพลอยทางขวา */
+    margin: 0 0 15px 20px; /* ระยะห่าง: ซ้าย 20px, ล่าง 15px */
+}
+
+.inline-image img {
+    width: 100%;     /* ความกว้างเต็ม container */
+    height: auto;    /* ความสูงปรับตามสัดส่วน */
+    display: block;  /* แสดงเป็น block element */
+}
+
+/* Clear float หลังจาก content-with-images เพื่อป้องกันการซ้อนทับ */
+.content-with-images::after {
+    content: "";     /* เนื้อหาว่าง */
+    display: table;  /* แสดงเป็น table */
+    clear: both;     /* ล้าง float ทั้งซ้ายและขวา */
+}
+
+.contact-section {
+    background-color: #2c2c2c; /* สีพื้นหลังเป็นสีเทาเข้ม */
+    padding: 40px 20px;        /* ระยะห่างภายใน: บน-ล่าง 40px, ซ้าย-ขวา 20px */
+    text-align: center;        /* จัดเนื้อหาให้อยู่กึ่งกลาง */
+}
+
+.contact-content {
+    max-width: 1200px; /* ความกว้างสูงสุด */
+    margin: 0 auto;    /* จัดให้อยู่กึ่งกลาง */
+}
+
+.contact-grid {
+    display: flex;          /* ใช้ flexbox layout */
+    gap: 20px;             /* ระยะห่างระหว่างการ์ด */
+    justify-content: center; /* จัดการ์ดให้อยู่กึ่งกลาง */
+    align-items: stretch;   /* ยืดความสูงให้เท่ากัน */
+    margin-top: 30px;      /* ระยะห่างด้านบน */
+}
+
+.contact-card {
+    background-color: #555555; /* สีพื้นหลังของการ์ดเป็นสีเทา */
+    border: 2px solid #9acd32; /* เส้นขอบสีเขียวอ่อน */
+    border-radius: 10px;       /* มุมโค้ง */
+    padding: 20px;             /* ระยะห่างภายใน */
+    flex: 1;                   /* ขยายตามพื้นที่ว่าง */
+    max-width: 300px;          /* ความกว้างสูงสุด */
+}
+
+.contact-title {
+    color: #9acd32;        /* สีหัวข้อเป็นสีเขียวอ่อน */
+    font-size: 24px;       /* ขนาดฟอนต์ */
+    font-weight: bold;     /* น้ำหนักฟอนต์หนา */
+    text-align: center;    /* จัดให้อยู่กึ่งกลาง */
+    margin-bottom: 15px;   /* ระยะห่างด้านล่าง */
+}
+
+.contact-text {
+    color: #ff6b35;        /* สีข้อความเป็นสีส้ม */
+    font-size: 16px;       /* ขนาดฟอนต์ */
+    margin: 8px 0;         /* ระยะห่างบน-ล่าง */
+    display: flex;         /* ใช้ flex layout */
+    align-items: center;   /* จัดแนวตั้งให้อยู่กึ่งกลาง */
+    gap: 10px;            /* ระยะห่างระหว่างไอคอนกับข้อความ */
+}
+
+.contact-icon {
+    font-size: 24px;       /* ขนาดไอคอน */
+    color: #ffffff;        /* สีไอคอนเป็นสีขาว */
+    width: 30px;          /* ความกว้างของไอคอน */
+    display: inline-block; /* แสดงเป็น inline-block */
+    text-align: center;    /* จัดไอคอนให้อยู่กึ่งกลาง */
+}
+
+/* ส่วนสำหรับกรอกอีเมล */
+.email-section {
+    background-color: #444444; /* สีพื้นหลังเป็นสีเทาเข้ม */
+    border: 2px solid #9acd32; /* เส้นขอบสีเขียวอ่อน */
+    border-radius: 10px;       /* มุมโค้ง */
+    padding: 20px;             /* ระยะห่างภายใน */
+}
+
+.email-input {
+    padding: 10px 15px;    /* ระยะห่างภายในช่อง input */
+    border: none;          /* ไม่มีเส้นขอบ */
+    border-radius: 20px;   /* มุมโค้งแบบมน */
+    width: 200px;         /* ความกว้างของช่อง input */
+    margin-right: 10px;   /* ระยะห่างด้านขวา */
+    outline: none;        /* ไม่แสดง outline เมื่อ focus */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงาใต้ช่อง input */
+    transition: box-shadow 0.3s ease;         /* การเปลี่ยนแปลงเงาแบบ smooth */
+}
+
+.email-input:focus {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* เงาเข้มขึ้นเมื่อ focus */
+}
+
+.subscribe-button {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42); /* พื้นหลังแบบ gradient สีส้ม */
+    border: none;              /* ไม่มีเส้นขอบ */
+    padding: 10px 20px;        /* ระยะห่างภายใน */
+    border-radius: 20px;       /* มุมโค้งแบบมน */
+    color: white;              /* สีข้อความเป็นสีขาว */
+    font-weight: bold;         /* น้ำหนักฟอนต์หนา */
+    cursor: pointer;           /* เปลี่ยน cursor เป็น pointer */
+    transition: all 0.3s ease; /* การเปลี่ยนแปลงทุกอย่างแบบ smooth */
+    box-shadow: 0 3px 6px rgba(255, 107, 53, 0.3); /* เงาสีส้ม */
+}
+
+.subscribe-button:hover {
+    background: linear-gradient(135deg, #e55a2b, #ff6b35); /* เปลี่ยนสี gradient เมื่อ hover */
+    transform: translateY(-1px);                           /* ยกปุ่มขึ้น 1px */
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.4);        /* เงาเข้มขึ้น */
+}
+
+.contact-image {
+    flex: 1;                   /* ขยายตามพื้นที่ว่าง */
+    display: flex;             /* ใช้ flex layout */
+    justify-content: center;   /* จัดเนื้อหาให้อยู่กึ่งกลางแนวนอน */
+    align-items: center;       /* จัดเนื้อหาให้อยู่กึ่งกลางแนวตั้ง */
+    background-color: #2c2c2c; /* สีพื้นหลัง */
+    border: 2px solid #9acd32; /* เส้นขอบสีเขียวอ่อน */
+    border-radius: 10px;       /* มุมโค้ง */
+    padding: 20px;             /* ระยะห่างภายใน */
+}
+
+.contact-image img {
+    max-width: 100%;    /* ความกว้างสูงสุดไม่เกิน container */
+    height: auto;       /* ความสูงปรับตามสัดส่วน */
+    border-radius: 10px; /* มุมโค้งของรูปภาพ */
+}
+
+.footer {
+    background-color: #1a1a1a; /* สีพื้นหลังเป็นสีดำอ่อน */
+    padding: 20px;             /* ระยะห่างภายใน */
+    text-align: center;        /* จัดเนื้อหาให้อยู่กึ่งกลาง */
+}
+
+.footer-text {
+    color: #888888;    /* สีข้อความเป็นสีเทาอ่อน */
+    font-size: 14px;   /* ขนาดฟอนต์เล็ก */
+    text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
+}
+
+/* สำหรับหน้าจอขนาดกลาง (แท็บเล็ต) - ความกว้างไม่เกิน 768px */
+@media (max-width: 768px) {
+    .timeline-container {
+        padding: 0 20px;              /* ลดระยะห่างซ้าย-ขวาเหลือ 20px */
+        max-width: calc(100% - 40px);  /* ปรับความกว้างตามระยะห่างใหม่ */
+    }
+    
+    .timeline-title {
+        font-size: 28px;  /* ลดขนาดฟอนต์หัวข้อ */
+        padding: 0 20px;  /* ลดระยะห่างซ้าย-ขวา */
+    }
+    
+    .timeline-card-content h3 {
+        font-size: 20px;  /* ลดขนาดฟอนต์หัวข้อในการ์ด */
+    }
+    
+    .timeline-card-content p {
+        font-size: 14px;  /* ลดขนาดฟอนต์ของย่อหน้า */
+    }
+    
+    .inline-image {
+        width: 150px;           /* ลดความกว้างของรูปภาพ */
+        margin: 0 15px 10px 0;  /* ปรับระยะห่างรอบรูปภาพ */
+    }
+    
+    .inline-image.right {
+        margin: 0 0 10px 15px;  /* ปรับระยะห่างสำหรับรูปภาพด้านขวา */
+    }
+    
+    .contact-grid {
+        flex-direction: column;  /* เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
+    }
+    
+    .navbar a {
+        font-size: 14px;      /* ลดขนาดฟอนต์ใน navbar */
+        padding: 10px 15px;   /* ลดระยะห่างภายในลิงก์ */
+    }
+}
+
+/* สำหรับหน้าจอขนาดเล็ก (มือถือ) - ความกว้างไม่เกิน 480px */
+@media (max-width: 480px) {
+    .timeline-container {
+        padding: 0 10px;              /* ลดระยะห่างซ้าย-ขวาเหลือ 10px */
+        max-width: calc(100% - 20px);  /* ปรับความกว้างตามระยะห่างใหม่ */
+    }
+    
+    .timeline-title {
+        font-size: 24px;  /* ลดขนาดฟอนต์หัวข้อเพิ่มเติม */
+        padding: 0 10px;  /* ลดระยะห่างซ้าย-ขวาเพิ่มเติม */
+    }
+    
+    .timeline-card-image,
+    .timeline-card-content {
+        padding: 10px;     /* ลดระยะห่างภายในการ์ด */
+    }
+    
+    .timeline-card-content h3 {
+        font-size: 18px;   /* ลดขนาดฟอนต์หัวข้อในการ์ดเพิ่มเติม */
+    }
+    
+    .inline-image {
+        width: 120px;          /* ลดความกว้างของรูปภาพเพิ่มเติม */
+        margin: 0 10px 8px 0;  /* ปรับระยะห่างรอบรูปภาพ */
+    }
+    
+    .inline-image.right {
+        margin: 0 0 8px 10px;  /* ปรับระยะห่างสำหรับรูปภาพด้านขวา */
+    }
+    
+    .navbar a {
+        font-size: 12px;     /* ลดขนาดฟอนต์ใน navbar เพิ่มเติม */
+        padding: 8px 12px;   /* ลดระยะห่างภายในลิงก์เพิ่มเติม */
+    }
+}

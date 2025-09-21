@@ -1,0 +1,752 @@
+body {
+    margin: 0;              /* ลบระยะขอบด้านนอกเริ่มต้น */
+    padding: 0;             /* ลบระยะขอบด้านในเริ่มต้น */
+    font-family: Arial, sans-serif; /* กำหนดฟอนต์เริ่มต้น */
+    background-color: #2c2c2c;      /* สีพื้นหลังหลักเป็นสีเทาเข้ม */
+}
+
+/* แถบนำทางหลัก */
+.navbar {
+    overflow: hidden;       /* ซ่อนส่วนที่เกินขอบ */
+    background-color: #333; /* สีพื้นหลังของแถบเมนู */
+    position: fixed;        /* ตำแหน่งคงที่ ไม่เลื่อนตามหน้า */
+    top: 0;                /* ติดด้านบนสุดของหน้า */
+    width: 100%;           /* ความกว้างเต็มหน้าจอ */
+    z-index: 1000;         /* ลำดับการแสดงผล (อยู่ด้านหน้าสุด) */
+    display: flex;         /* จัดเรียงแบบ flexbox */
+}
+
+/* ลิงก์ในแถบเมนู */
+.navbar a {
+    float: left;           /* จัดเรียงไปทางซ้าย */
+    display: flex;         /* จัดเรียงแบบ flexbox */
+    align-items: center;   /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    gap: 8px;              /* ระยะห่างระหว่างไอคอนและข้อความ */
+    color: #f2f2f2;        /* สีตัวอักษรเป็นสีขาวอ่อน */
+    text-align: center;    /* จัดข้อความให้อยู่กึ่งกลาง */
+    padding: 14px 20px;    /* ช่องว่างภายในลิงก์ */
+    text-decoration: none; /* ไม่มีเส้นใต้ */
+    font-size: 17px;       /* ขนาดตัวอักษร */
+}
+
+/* ไอคอนในแถบเมนู */
+.navbar img {
+    width: 20px;           /* ความกว้างไอคอน */
+    height: 20px;          /* ความสูงไอคอน */
+    filter: brightness(0) invert(1); /* เปลี่ยนสีไอคอนเป็นสีขาว */
+}
+
+/* เอฟเฟกต์เมื่อเลื่อนเมาส์ไปที่ลิงก์เมนู */
+.navbar a:hover {
+    background-color: #ddd; /* เปลี่ยนพื้นหลังเป็นสีเทาอ่อน */
+    color: black;          /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
+}
+
+/* เอฟเฟกต์ไอคอนเมื่อ hover */
+.navbar a:hover img {
+    filter: brightness(0); /* เปลี่ยนไอคอนเป็นสีดำเมื่อ hover */
+}
+
+/* สไตล์สำหรับลิงก์ที่ active (หน้าปัจจุบัน) */
+.navbar a.active {
+    background-color: #ff6b35; /* พื้นหลังสีส้ม */
+    color: white;              /* ตัวอักษรสีขาว */
+}
+
+/* ไอคอนของลิงก์ active */
+.navbar a.active img {
+    filter: brightness(0) invert(1); /* รักษาไอคอนเป็นสีขาว */
+}
+
+/* ไอคอน Home*/
+.home-icon {
+    width: 20px;           /* ความกว้าง */
+    height: 20px;          /* ความสูง */
+    fill: currentColor;    /* ใช้สีเดียวกับข้อความ */
+}
+
+/* คอนเทนต์หลัก - เว้นระยะจากแถบเมนูด้านบน */
+.main-content {
+    margin-top: 80px;      /* เว้นระยะจากแถบเมนูที่ติด fixed */
+    padding: 0 20px;       /* ช่องว่างซ้าย-ขวา */
+}
+
+/* ส่วน Hero หลัก */
+.hero-section {
+    background-color: #1a1a1a; /* พื้นหลังสีดำเข้ม */
+    padding: 20px 0;           /* ช่องว่างบน-ล่าง */
+    text-align: center;        /* จัดข้อความให้อยู่กึ่งกลาง */
+}
+
+/* แบนเนอร์ Hero */
+.hero-banner {
+    width: 100%;           /* ความกว้างเต็ม */
+    max-width: 1200px;     /* ความกว้างสูงสุด */
+    margin: 0 auto;        /* จัดให้อยู่กึ่งกลาง */
+    padding: 40px 0
+}
+
+/* รูปภาพในแบนเนอร์ */
+.hero-banner img {
+    width: 100%;           /* ความกว้างเต็ม */
+    height: auto;          /* ความสูงปรับตามสัดส่วน */
+}
+/* ส่วนหัวของ Hero */
+    .hero-header {
+    background-color: #1a1a1a; /* พื้นหลังสีดำเข้ม */
+    padding: 20px;             /* ช่องว่างรอบๆ */
+    display: flex;             /* จัดเรียงแบบ flexbox */
+    align-items: center;       /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    justify-content: space-between; /* กระจายระยะห่างเท่าๆ กัน */
+    max-width: 1200px;         /* ความกว้างสูงสุด */
+    margin: 0 auto;            /* จัดให้อยู่กึ่งกลาง */
+}
+
+/* ส่วนโลโก้ */
+.hero-header .logo-section {
+    display: flex;         /* จัดเรียงแบบ flexbox */
+    align-items: center;   /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    gap: 15px;             /* ระยะห่างระหว่างองค์ประกอบ */
+}
+
+.logo-section img {
+    vertical-align: middle; /* จัดให้โลโก้อยู่ตรงกับข้อความ */
+}
+
+/* ส่วนเมนูนำทาง */
+.hero-header .nav-section {
+    display: flex;         /* จัดเรียงแบบ flexbox */
+    gap: 20px;             /* ระยะห่างระหว่างรายการเมนู */
+    align-items: center;   /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+}
+
+/* รายการเมนูแต่ละอัน */
+.nav-item a {
+    display: flex;         /* จัดเรียงแบบ flexbox */
+    align-items: center;   /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    gap: 8px;              /* ระยะห่างระหว่างไอคอนและข้อความ */
+    background: linear-gradient(135deg, #444640, #000000); /* พื้นหลังไล่สี */
+    border: none;          /* ไม่มีขอบ */
+    padding: 15px 30px;    /* ช่องว่างภายใน */
+    border-radius: 25px;   /* มุมโค้งมน */
+    font-size: 16px;       /* ขนาดตัวอักษร */
+    font-weight: bold;     /* ตัวหนา */
+    text-decoration: none; /* ไม่มีเส้นใต้ลิงก์ */
+    cursor: pointer;       /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    transition: all 0.3s ease; /* เอฟเฟกต์เปลี่ยนแปลง */
+    box-shadow: 0 4px 8px rgba(243, 243, 243, 0.3); /* เงาปุ่ม */
+    color: #ffffff;        /* สีข้อความ */
+}
+
+/* เอฟเฟกต์เมื่อชี้เมาส์ (hover) */
+.nav-item a:hover {
+    background: linear-gradient(135deg, #666660, #333333); /* เปลี่ยนสีพื้นหลัง */
+    transform: translateY(-2px);    /* ยกปุ่มขึ้น */
+    box-shadow: 0 6px 16px rgba(243, 243, 243, 0.4); /* เงาเข้มขึ้น */
+    color: #f0f0f0;                /* เปลี่ยนสีข้อความ */
+}
+
+/* เอฟเฟกต์เมื่อคลิก (active) */
+.nav-item a:active {
+    transform: translateY(0px);     /* กลับสู่ตำแหน่งเดิม */
+    box-shadow: 0 2px 4px rgba(243, 243, 243, 0.2); /* เงาน้อยลง */
+}
+
+/* ไอคอนในเมนู */
+.nav-item img {
+    width: 30px;           /* ความกว้างไอคอน */
+    height: 30px;          /* ความสูงไอคอน */
+}
+
+/* เนื้อหาหลักของ Hero */
+.hero-content {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42); /* พื้นหลังไล่สีส้ม */
+    padding: 40px 20px;    /* ช่องว่างรอบๆ */
+    text-align: center;    /* จัดข้อความให้อยู่กึ่งกลาง */
+    color: white;          /* สีตัวอักษรเป็นสีขาว */
+}
+
+/* แถบค้นหา */
+.search-bar {
+    display: flex;         /* จัดเรียงแบบ flexbox */
+    justify-content: flex-end; /* จัดให้อยู่ด้านขวา */
+    margin-bottom: 40px;   /* ระยะห่างด้านล่าง */
+}
+
+/* ช่องกรอกข้อมูลค้นหา */
+.search-input {
+    padding: 8px 15px;     /* ช่องว่างภายใน */
+    border-radius: 20px;   /* มุมโค้งมน */
+    border: none;          /* ไม่มีขอบ */
+    width: 180px;          /* ความกว้าง */
+    font-size: 14px;       /* ขนาดตัวอักษร */
+    outline: none;         /* ไม่มีขอบเมื่อ focus */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงาอ่อน */
+    transition: box-shadow 0.3s ease;         /* เอฟเฟกต์เปลี่ยนเงา */
+}
+
+/* เอฟเฟกต์เมื่อคลิกที่ช่องค้นหา */
+.search-input:focus {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* เงาเข้มขึ้น */
+}
+
+/* หัวข้อหลัก */
+.main-title {
+    color: #ffffff;        /* สีขาว */
+    font-size: 48px;       /* ขนาดตัวอักษรใหญ่ */
+    font-weight: bold;     /* ตัวหนา */
+    margin: 0;             /* ไม่มีระยะขอบ */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* เงาข้อความ */
+}
+
+/* หัวข้อรอง */
+.subtitle {
+    color: #ffffff;        /* สีขาว */
+    font-size: 24px;       /* ขนาดตัวอักษรกลาง */
+    margin: 20px 0 40px 0; /* ระยะขอบบนและล่าง */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* เงาข้อความ */
+}
+
+/* ปุ่มหลักใน Hero */
+.hero-button {
+    background: linear-gradient(135deg, #9acd32, #7fb82d); /* พื้นหลังไล่สีเขียว */
+    border: none;          /* ไม่มีขอบ */
+    padding: 15px 30px;    /* ช่องว่างภายใน */
+    border-radius: 25px;   /* มุมโค้งมน */
+    font-size: 16px;       /* ขนาดตัวอักษร */
+    font-weight: bold;     /* ตัวหนา */
+    color: #2c2c2c;        /* สีตัวอักษรเป็นสีเทาเข้ม */
+    cursor: pointer;       /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    transition: all 0.3s ease; /* เอฟเฟกต์เปลี่ยนแปลง */
+    box-shadow: 0 4px 8px rgba(154, 205, 50, 0.3); /* เงาปุ่ม */
+}
+
+/* เอฟเฟกต์เมื่อ hover ปุ่ม Hero */
+.hero-button:hover {
+    background: linear-gradient(135deg, #8bb82d, #9acd32); /* เปลี่ยนไล่สี */
+    transform: translateY(-2px);   /* เลื่อนขึ้น 2px */
+    box-shadow: 0 6px 12px rgba(154, 205, 50, 0.4); /* เงาเข้มขึ้น */
+}
+
+/* ส่วนไทม์ไลน์หลัก */
+.timeline-section {
+    background-color: #f5f5f5; /* พื้นหลังสีเทาอ่อน */
+    padding: 40px 20px;        /* ช่องว่างรอบๆ */
+}
+
+/* หัวข้อส่วน (ใช้ร่วมกับหลายส่วน) */
+.section-title {
+    color: #2c2c2c;        /* สีตัวอักษรเป็นสีเทาเข้ม */
+    font-size: 24px;       /* ขนาดตัวอักษรใหญ่ */
+    font-weight: bold;     /* ตัวหนา */
+    margin-bottom: 30px;   /* ระยะห่างด้านล่าง */
+    text-align: center;    /* จัดให้อยู่กึ่งกลาง */
+}
+
+/* คอนเทนเนอร์ไทม์ไลน์ - เลื่อนได้แนวนอน */
+.timeline-container-nowrap {
+    display: flex;         /* จัดเรียงแบบ flexbox */
+    flex-direction: row;   /* เรียงแนวนอน */
+    gap: 20px;             /* ระยะห่างระหว่างการ์ด */
+    overflow-x: auto;      /* เลื่อนได้แนวนอนเมื่อเนื้อหาเกิน */
+    align-items: stretch;  /* ทำให้การ์ดสูงเท่ากัน */
+    padding: 20px 0;       /* ช่องว่างบน-ล่าง */
+    margin: 0 auto;        /* จัดให้อยู่กึ่งกลาง */
+    max-width: 1200px;     /* ความกว้างสูงสุด */
+    scrollbar-width: thin; /* ความกว้าง scrollbar (Firefox) */
+    scrollbar-color: #ff6b35 #f1f1f1; /* สี scrollbar (Firefox) */
+}
+
+/* ปรับแต่ง scrollbar สำหรับ Webkit browsers */
+.timeline-container-nowrap::-webkit-scrollbar {
+    height: 8px;           /* ความสูง scrollbar */
+}
+
+/* track ของ scrollbar */
+.timeline-container-nowrap::-webkit-scrollbar-track {
+    background: #f1f1f1;   /* สีพื้นหลัง track */
+    border-radius: 10px;   /* มุมโค้งมน */
+}
+
+/* thumb ของ scrollbar */
+.timeline-container-nowrap::-webkit-scrollbar-thumb {
+    background: #ff6b35;   /* สีของ thumb */
+    border-radius: 10px;   /* มุมโค้งมน */
+}
+
+/* เอฟเฟกต์เมื่อ hover thumb */
+.timeline-container-nowrap::-webkit-scrollbar-thumb:hover {
+    background: #e55a2b;   /* สีเข้มขึ้นเมื่อ hover */
+}
+
+/* การ์ดไทม์ไลน์แต่ละใบ */
+.timeline-card {
+    position: relative;    /* ตำแหน่งสัมพันธ์ (สำหรับปุ่มด้านล่าง) */
+    background: #ffffff;   /* พื้นหลังสีขาว */
+    border: 2px solid #ff6b35; /* ขอบสีส้ม */
+    border-radius: 15px;   /* มุมโค้งมน */
+    width: 280px;          /* ความกว้างคงที่ */
+    min-height: 350px;     /* ความสูงต่ำสุด */
+    vertical-align: top;   /* จัดเรียงด้านบน */
+    padding: 0;            /* ไม่มีช่องว่างภายใน (กำหนดใน card-content) */
+    flex-shrink: 0;        /* ไม่ให้หดเล็กลง */
+    transition: all 0.3s ease; /* เอฟเฟกต์เปลี่ยนแปลง */
+}
+
+/* เอฟเฟกต์เมื่อ hover การ์ดไทม์ไลน์ */
+.timeline-card:hover {
+    transform: translateY(-5px); /* เลื่อนขึ้น 5px */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* เงาเข้มขึ้น */
+    border-color: #e55a2b; /* เปลี่ยนสีขอบ */
+}
+
+/* เนื้อหาภายในการ์ดไทม์ไลน์ */
+.timeline-card .card-content {
+    flex: 1;               /* ขยายเต็มพื้นที่ */
+    padding: 20px;         /* ช่องว่างภายใน */
+    padding-bottom: 80px;  /* เว้นที่สำหรับปุ่มด้านล่าง */
+    display: flex;         /* จัดเรียงแบบ flexbox */
+    flex-direction: column; /* เรียงแนวตั้ง */
+    gap: 10px;             /* ระยะห่างระหว่างองค์ประกอบ */
+}
+
+/* ส่วนปุ่มในการ์ด */
+.card-button {
+    position: absolute;    /* ตำแหน่งแน่นอน */
+    bottom: 15px;          /* ห่างจากด้านล่าง 15px */
+    left: 15px;            /* ห่างจากด้านซ้าย 15px */
+    right: 15px;           /* ห่างจากด้านขวา 15px */
+}
+
+/* ปุ่มในการ์ด */
+.card-button input[type="button"] {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42); /* พื้นหลังไล่สีส้ม */
+    border: none;          /* ไม่มีขอบ */
+    padding: 12px 20px;    /* ช่องว่างภายใน */
+    border-radius: 25px;   /* มุมโค้งมน */
+    font-size: 14px;       /* ขนาดตัวอักษร */
+    font-weight: bold;     /* ตัวหนา */
+    color: white;          /* สีตัวอักษรเป็นสีขาว */
+    cursor: pointer;       /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    width: 100%;           /* ความกว้างเต็ม */
+    transition: all 0.3s ease; /* เอฟเฟกต์เปลี่ยนแปลง */
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3); /* เงาปุ่ม */
+}
+
+/* เอฟเฟกต์เมื่อ hover ปุ่มในการ์ด */
+.card-button input[type="button"]:hover {
+    background: linear-gradient(135deg, #e55a2b, #ff6b35); /* เปลี่ยนไล่สี */
+    transform: translateY(-2px); /* เลื่อนขึ้น 2px */
+    box-shadow: 0 6px 12px rgba(255, 107, 53, 0.4); /* เงาเข้มขึ้น */
+}
+
+/* หัวข้อของการ์ด */
+.card-title {
+    color: #ff6b35;        /* สีส้ม */
+    font-size: 18px;       /* ขนาดตัวอักษร */
+    font-weight: bold;     /* ตัวหนา */
+    text-align: center;    /* จัดให้อยู่กึ่งกลาง */
+    margin-bottom: 15px;   /* ระยะห่างด้านล่าง */
+}
+
+/* ข้อความในการ์ด */
+.card-text {
+    color: #2c2c2c;        /* สีเทาเข้ม */
+    font-size: 14px;       /* ขนาดตัวอักษร */
+    line-height: 1.6;      /* ระยะห่างบรรทัด */
+    text-align: left;      /* จัดข้อความซ้าย */
+    flex: 1;               /* ขยายเต็มพื้นที่ที่เหลือ */
+}
+
+/* ตัวบ่งชี้การเลื่อน */
+.scroll-indicator {
+    color: #ff6b35;        /* สีส้ม */
+    font-size: 14px;       /* ขนาดตัวอักษร */
+    font-weight: bold;     /* ตัวหนา */
+    text-align: center;    /* จัดให้อยู่กึ่งกลาง */
+    margin-top: 20px;      /* ระยะห่างด้านบน */
+    animation: pulse 2s infinite; /* เอฟเฟกต์กะพริบ */
+}
+
+/* Animation สำหรับกะพริบ */
+@keyframes pulse {
+    0% { opacity: 1; }     /* เริ่มต้นทึบ */
+    50% { opacity: 0.5; }  /* กลางจางลง */
+    100% { opacity: 1; }   /* จบทึบ */
+}
+
+/* ส่วนหลักของ Reference Section */
+.reference-section {
+    background-color: #e8e8e8; /* พื้นหลังสีเทาอ่อน */
+    padding: 40px 20px;        /* ช่องว่างรอบๆ */
+}
+
+/* คอนเทนเนอร์หลักสำหรับการ์ดอ้างอิง - รองรับการเลื่อนแนวนอน */
+.reference-container {
+    display: flex;             /* จัดเรียงแบบ flexbox */
+    flex-direction: row;       /* เรียงแนวนอน */
+    gap: 20px;                 /* ระยะห่างระหว่างการ์ด */
+    overflow-x: auto;          /* เลื่อนได้แนวนอนเมื่อเนื้อหาเกิน */
+    align-items: stretch;      /* ทำให้การ์ดสูงเท่ากัน */
+    justify-content: flex-start; /* จัดเรียงจากซ้าย */
+    padding: 20px 0;           /* ช่องว่างบน-ล่าง */
+    margin: 0 auto;            /* จัดให้อยู่กึ่งกลาง */
+    max-width: 1200px;         /* ความกว้างสูงสุด */
+    
+    /* การปรับแต่ง Scrollbar สำหรับ Firefox */
+    scrollbar-width: thin;     /* ความกว้าง scrollbar */
+    scrollbar-color: #9acd32 #f1f1f1; /* สี scrollbar */
+}
+
+/* การปรับแต่ง Scrollbar สำหรับ Webkit browsers (Chrome, Safari, Edge) */
+.reference-container::-webkit-scrollbar {
+    height: 8px;               /* ความสูง scrollbar */
+}
+
+.reference-container::-webkit-scrollbar-track {
+    background: #f1f1f1;       /* สีพื้นหลัง track */
+    border-radius: 10px;       /* มุมโค้งมน */
+}
+
+.reference-container::-webkit-scrollbar-thumb {
+    background: #9acd32;       /* สีของ thumb (เขียว) */
+    border-radius: 10px;       /* มุมโค้งมน */
+}
+
+.reference-container::-webkit-scrollbar-thumb:hover {
+    background: #8bb82d;       /* สีเข้มขึ้นเมื่อ hover */
+}
+
+/* การ์ดแต่ละใบสำหรับแสดงแหล่งอ้างอิง */
+.reference-card {
+    position: relative;        /* ตำแหน่งสัมพันธ์ */
+    display: flex;             /* จัดเรียงแบบ flexbox */
+    flex-direction: column;    /* เรียงแนวตั้ง */
+    background: #ffffff;       /* พื้นหลังสีขาว */
+    border: 2px solid #9acd32; /* ขอบสีเขียว */
+    border-radius: 15px;       /* มุมโค้งมน */
+    width: 280px;              /* ความกว้างคงที่ */
+    min-height: 250px;         /* ความสูงต่ำสุด */
+    flex-shrink: 0;            /* ป้องกันไม่ให้การ์ดหดเล็กลง */
+    padding: 20px;             /* ช่องว่างภายใน */
+    transition: all 0.3s ease; /* เอฟเฟกต์เปลี่ยนแปลง */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เงาอ่อน */
+    gap: 15px;                 /* ระยะห่างระหว่างองค์ประกอบ */
+}
+
+/* เอฟเฟกต์เมื่อ hover การ์ดอ้างอิง */
+.reference-card:hover {
+    transform: translateY(-5px); /* เลื่อนขึ้น 5px */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* เงาเข้มขึ้น */
+    border-color: #8bb82d;     /* เปลี่ยนสีขอบ */
+}
+
+/* หัวข้อของการ์ดแต่ละใบ */
+.reference-title {
+    color: #9acd32;            /* สีเขียว */
+    font-size: 18px;           /* ขนาดตัวอักษร */
+    font-weight: bold;         /* ตัวหนา */
+    text-align: center;        /* จัดให้อยู่กึ่งกลาง */
+    margin-bottom: 15px;       /* ระยะห่างด้านล่าง */
+    border-bottom: 2px solid #9acd32; /* เส้นใต้หัวข้อ */
+    padding-bottom: 10px;      /* ช่องว่างก่อนเส้นใต้ */
+}
+
+/* คอนเทนต์ภายในการ์ด */
+.reference-text {
+    color: #2c2c2c;            /* สีเทาเข้ม */
+    font-size: 14px;           /* ขนาดตัวอักษร */
+    line-height: 1.6;          /* ระยะห่างบรรทัด */
+    flex-grow: 1;              /* ขยายเต็มพื้นที่ที่เหลือในการ์ด */
+}
+
+/* ลิงก์และข้อความอ้างอิง */
+.reference-link {
+    color: #2c2c2c;            /* สีเขียว */
+    text-decoration: none;     /* ไม่มีเส้นใต้ */
+    display: flex;             /* จัดเรียงแบบ flexbox */
+    align-items: flex-start;   /* จัดเรียงด้านบน */
+    gap: 8px;                  /* ระยะห่างระหว่างจุดและข้อความ */
+    margin-bottom: 8px;        /* ระยะห่างด้านล่าง */
+    transition: all 0.2s ease; /* เอฟเฟกต์เปลี่ยนแปลง */
+    word-break: break-all;     /* ตัด URL ยาวๆ ให้พอดีการ์ด */
+}
+
+/* เอฟเฟกต์เมื่อ hover ลิงก์ */
+.reference-link:hover {
+    text-decoration: underline; /* แสดงเส้นใต้ */
+    color: #8bb82d;            /* เปลี่ยนเป็นสีเขียวเข้ม */
+    transform: translateX(5px); /* เลื่อนไปทางขวาเล็กน้อย */
+}
+
+/* จุดหน้าบรรทัด (-) สำหรับแต่ละรายการ */
+.reference-link span {
+    color: #9acd32 !important; /* สีเขียว (บังคับ) */
+    font-size: 16px !important; /* ขนาดตัวอักษร (บังคับ) */
+    font-weight: bold;         /* ตัวหนา */
+    flex-shrink: 0;            /* ป้องกันไม่ให้จุดหดเล็กลง */
+}
+
+/* ตัวบ่งชี้การเลื่อน */
+.scroll-indicator-reference{
+    color: #9acd32;        /* สีส้ม */
+    font-size: 14px;       /* ขนาดตัวอักษร */
+    font-weight: bold;     /* ตัวหนา */
+    text-align: center;    /* จัดให้อยู่กึ่งกลาง */
+    margin-top: 20px;      /* ระยะห่างด้านบน */
+    animation: pulse 2s infinite; /* เอฟเฟกต์กะพริบ */
+}
+
+/* ส่วนการติดต่อหลัก */
+.contact-section {
+    background-color: #2c2c2c; /* พื้นหลังสีเทาเข้ม */
+    padding: 40px 20px;        /* ช่องว่างรอบๆ */
+    text-align: center;        /* จัดข้อความให้อยู่กึ่งกลาง */
+}
+
+/* เนื้อหาส่วนการติดต่อ */
+.contact-content {
+    max-width: 1200px;         /* ความกว้างสูงสุด */
+    margin: 0 auto;            /* จัดให้อยู่กึ่งกลาง */
+}
+
+/* กริดสำหรับจัดวางการ์ดการติดต่อ */
+.contact-grid {
+    display: flex;             /* จัดเรียงแบบ flexbox */
+    gap: 20px;                 /* ระยะห่างระหว่างการ์ด */
+    justify-content: center;   /* จัดให้อยู่กึ่งกลาง */
+    align-items: stretch;      /* ทำให้การ์ดสูงเท่ากัน */
+    margin-top: 30px;          /* ระยะห่างด้านบน */
+}
+
+/* การ์ดการติดต่อ */
+.contact-card {
+    background-color: #555555; /* พื้นหลังสีเทา */
+    border: 2px solid #9acd32; /* ขอบสีเขียว */
+    border-radius: 10px;       /* มุมโค้งมน */
+    padding: 20px;             /* ช่องว่างภายใน */
+    flex: 1;                   /* ขยายเท่าๆ กัน */
+    max-width: 300px;          /* ความกว้างสูงสุด */
+}
+
+/* หัวข้อการ์ดการติดต่อ */
+.contact-title {
+    color: #9acd32;            /* สีเขียว */
+    font-size: 20px;           /* ขนาดตัวอักษร */
+    font-weight: bold;         /* ตัวหนา */
+    text-align: center;        /* จัดให้อยู่กึ่งกลาง */
+    margin-bottom: 15px;       /* ระยะห่างด้านล่าง */
+}
+
+/* ข้อความการติดต่อ */
+.contact-text {
+    color: #ff6b35;            /* สีส้ม */
+    font-size: 16px;           /* ขนาดตัวอักษร */
+    margin: 8px 0;             /* ระยะขอบบน-ล่าง */
+    display: flex;             /* จัดเรียงแบบ flexbox */
+    align-items: center;       /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    gap: 10px;                 /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+/* ไอคอนการติดต่อ */
+.contact-icon {
+    font-size: 24px;           /* ขนาดไอคอน */
+    color: #ffffff;            /* สีขาว */
+    width: 30px;               /* ความกว้าง */
+    display: inline-block;     /* แสดงเป็นบล็อกในบรรทัด */
+    text-align: center;        /* จัดให้อยู่กึ่งกลาง */
+}
+
+/* ส่วนสำหรับกรอกอีเมล */
+.email-section {
+    background-color: #444444; /* พื้นหลังสีเทาเข้ม */
+    border: 2px solid #9acd32; /* ขอบสีเขียว */
+    border-radius: 10px;       /* มุมโค้งมน */
+    padding: 20px;             /* ช่องว่างภายใน */
+}
+
+/* ช่องกรอกอีเมล */
+.email-input {
+    padding: 10px 15px;        /* ช่องว่างภายใน */
+    border: none;              /* ไม่มีขอบ */
+    border-radius: 20px;       /* มุมโค้งมน */
+    width: 200px;              /* ความกว้าง */
+    margin-right: 10px;        /* ระยะห่างด้านขวา */
+    outline: none;             /* ไม่มีขอบเมื่อ focus */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงาอ่อน */
+    transition: box-shadow 0.3s ease;         /* เอฟเฟกต์เปลี่ยนเงา */
+}
+
+/* เอฟเฟกต์เมื่อ focus ช่องอีเมล */
+.email-input:focus {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* เงาเข้มขึ้น */
+}
+
+/* ปุ่มสมัครสมาชิก */
+.subscribe-button {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42); /* พื้นหลังไล่สีส้ม */
+    border: none;              /* ไม่มีขอบ */
+    padding: 10px 20px;        /* ช่องว่างภายใน */
+    border-radius: 20px;       /* มุมโค้งมน */
+    color: white;              /* สีตัวอักษรเป็นสีขาว */
+    font-weight: bold;         /* ตัวหนา */
+    cursor: pointer;           /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    transition: all 0.3s ease; /* เอฟเฟกต์เปลี่ยนแปลง */
+    box-shadow: 0 3px 6px rgba(255, 107, 53, 0.3); /* เงาปุ่ม */
+}
+
+/* เอฟเฟกต์เมื่อ hover ปุ่มสมัครสมาชิก */
+.subscribe-button:hover {
+    background: linear-gradient(135deg, #e55a2b, #ff6b35); /* เปลี่ยนไล่สี */
+    transform: translateY(-1px); /* เลื่อนขึ้น 1px */
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.4); /* เงาเข้มขึ้น */
+}
+
+/* ส่วนแสดงรูปภาพการติดต่อ */
+.contact-image {
+    flex: 1;                   /* ขยายเท่าๆ กัน */
+    display: flex;             /* จัดเรียงแบบ flexbox */
+    justify-content: center;   /* จัดให้อยู่กึ่งกลางแนวนอน */
+    align-items: center;       /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    background-color: #2c2c2c; /* พื้นหลังสีเทาเข้ม */
+    border: 2px solid #9acd32; /* ขอบสีเขียว */
+    border-radius: 10px;       /* มุมโค้งมน */
+    padding: 20px;             /* ช่องว่างภายใน */
+}
+
+/* รูปภาพในส่วนการติดต่อ */
+.contact-image img {
+    max-width: 100%;           /* ความกว้างสูงสุดเต็ม */
+    height: auto;              /* ความสูงปรับตามสัดส่วน */
+    border-radius: 10px;       /* มุมโค้งมน */
+}
+
+/* ส่วนท้ายหลัก */
+.footer {
+    background-color: #1a1a1a; /* พื้นหลังสีดำเข้ม */
+    padding: 20px;             /* ช่องว่างรอบๆ */
+    text-align: center;        /* จัดข้อความให้อยู่กึ่งกลาง */
+}
+
+/* ข้อความในส่วนท้าย */
+.footer-text {
+    color: #888888;            /* สีเทาอ่อน */
+    font-size: 14px;           /* ขนาดตัวอักษร */
+    text-align: center;        /* จัดให้อยู่กึ่งกลาง */
+    line-height: 2;
+}
+
+/* สำหรับแท็บเล็ตขนาดใหญ่และจอเดสก์ท็อปขนาดเล็ก (หน้าจอ 1024px ลงมา) */
+@media (max-width: 1024px) {
+    /* จัดคอนเทนเนอร์ให้อยู่กึ่งกลางเมื่อมีพื้นที่น้อย */
+    .timeline-container-nowrap,
+    .reference-container {
+        justify-content: center; /* จัดให้อยู่กึ่งกลาง */
+    }
+}
+
+/* สำหรับแท็บเล็ตและจอขนาดกลาง (หน้าจอ 768px ลงมา) */
+@media (max-width: 768px) {
+    /* การปรับเลย์เอาต์สำหรับการ์ด */
+    .timeline-container-nowrap,
+    .reference-container {
+        flex-direction: column; /* เปลี่ยนเป็นแนวตั้ง */
+        align-items: center;    /* จัดให้อยู่กึ่งกลาง */
+    }
+    
+    /* การปรับขนาดการ์ด */
+    .timeline-card, 
+    .reference-card {
+        width: 100%;            /* ใช้ความกว้างเต็ม */
+        max-width: 350px;       /* กำหนดความกว้างสูงสุด */
+        min-height: 200px;      /* กำหนดความสูงต่ำสุด */
+        padding: 15px;          /* ช่องว่างภายใน */
+    }
+    
+    /* การปรับขนาดตัวอักษรหลัก */
+    .main-title {
+        font-size: 36px;        /* หัวข้อหลักขนาดเล็กลง */
+    }
+    
+    .subtitle {
+        font-size: 18px;        /* หัวข้อรองขนาดเล็กลง */
+    }
+    
+    .section-title {
+        font-size: 28px;        /* หัวข้อส่วนขนาดเล็กลง */
+    }
+    
+    .reference-title {
+        font-size: 16px;        /* หัวข้ออ้างอิงขนาดเล็กลง */
+    }
+    
+    /* การปรับแถบนำทางและช่องค้นหา */
+    .search-input {
+        width: 150px;           /* ความกว้างช่องค้นหาลดลง */
+    }
+    
+    .navbar a {
+        font-size: 14px;        /* ขนาดตัวอักษรเมนูเล็กลง */
+        padding: 10px 15px;     /* ช่องว่างรอบลิงก์ลดลง */
+    }
+    
+    /* การปรับส่วนหัวเว็บ (Hero Header) */
+    .hero-header {
+        flex-direction: column; /* เปลี่ยนเป็นแนวตั้ง */
+        gap: 20px;              /* ระยะห่างระหว่างองค์ประกอบ */
+    }
+
+    /* การปรับเมนูนำทางในส่วนหัว */
+    .hero-header .nav-section {
+        flex-wrap: wrap;        /* อนุญาตให้ขึ้นบรรทัดใหม่ */
+        justify-content: center; /* จัดให้อยู่กึ่งกลาง */
+    }
+    
+    /* ส่วนการติดต่อ */
+    .contact-grid {
+        flex-direction: column; /* เปลี่ยนเป็นแนวตั้ง */
+    }
+    
+    /* ระยะห่างของส่วนต่างๆ */
+    .reference-section {
+        padding: 20px 10px;     /* ช่องว่างรอบส่วนลดลง */
+    }
+}
+
+/* สำหรับมือถือ (หน้าจอ 480px ลงมา) */
+@media (max-width: 480px) {
+    /* การปรับการ์ดสำหรับมือถือ */
+    .timeline-card,
+    .reference-card {
+        width: 100%;            /* ใช้ความกว้างเต็ม */
+        max-width: none;        /* ไม่จำกัดความกว้างสูงสุด */
+        min-width: 200px;       /* ความกว้างต่ำสุด */
+    }
+    
+    /* การปรับขนาดตัวอักษรเพิ่มเติมสำหรับมือถือ */
+    .main-title {
+        font-size: 28px;        /* หัวข้อหลักขนาดเล็กลงอีก */
+    }
+    
+    .subtitle {
+        font-size: 16px;        /* หัวข้อรองขนาดเล็กลงอีก */
+    }
+    
+    .section-title {
+        font-size: 24px;        /* หัวข้อส่วนขนาดเล็กลงอีก */
+    }
+    
+    /* การปรับปรุงเพิ่มเติมสำหรับมือถือ */
+    .reference-section {
+        padding: 15px 5px;      /* ลดช่องว่างให้เหมาะกับหน้าจอเล็ก */
+    }
+    
+    .navbar a {
+        font-size: 12px;        /* ตัวอักษรเมนูขนาดเล็กลงอีก */
+        padding: 8px 12px;      /* ลดช่องว่างรอบลิงก์อีก */
+    }
+    
+    .search-input {
+        width: 120px;           /* ลดความกว้างช่องค้นหาอีก */
+    }
+}
